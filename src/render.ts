@@ -19,6 +19,10 @@ export function renderResult(result: OmikujiResult | null): void {
   console.log("引いた結果:", result);
 
   // TODO（ステップ1）: ここに DOM 操作を書いて、画面に結果を表示する。
+  const resultElement = document.getElementById("result");
+  if (resultElement) {
+    resultElement.textContent = result === null ? "ここに結果が出ます" : result;
+  }
 }
 
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
