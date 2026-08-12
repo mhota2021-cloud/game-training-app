@@ -28,3 +28,13 @@ export function renderResult(result: OmikujiResult | null): void {
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
 //  - 履歴をリスト表示する: document.createElement で <li> を作り、<ul id="history"> に足す関数。
 //  - 残りくじ枚数を表示する: omikuji.ts に残数を返す関数を足したうえで表示用の関数を足す。
+
+export function renderClickProgress(
+  count: number,
+  requiredClicks: number,
+): void {
+  const progressElement = document.getElementById("click-progress");
+  if (progressElement) {
+    progressElement.textContent = `${count}/${requiredClicks}`;
+  }
+}
