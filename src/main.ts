@@ -4,8 +4,9 @@
 // この層は完成済み（ステップ1で render.ts を実装すれば動く）。
 
 import { resetOmikuji, drawOmikuji } from "./omikuji";
-import { renderClickProgress, renderResult } from "./render";
 import { handleClickForDraw } from "./clickcount";
+import { addTokensForResult } from "./tokens";
+import { renderClickProgress, renderResult, renderTokens } from "./render";
 
 function main(): void {
   // おみくじ箱を用意する（1回呼ぶと、くじが入った状態になる）。
@@ -21,6 +22,11 @@ function main(): void {
     if (canDraw) {
       const result = drawOmikuji();
       renderResult(result);
+
+      if (result !== null) {
+        const tokenTotal = addTokensForResult(result);
+        renderTokens(tokenTotal);
+      }
     }
   });
 

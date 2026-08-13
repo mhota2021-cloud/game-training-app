@@ -38,3 +38,10 @@ export function renderClickProgress(
     progressElement.textContent = `${count}/${requiredClicks}`;
   }
 }
+
+export function renderTokens(tokenCount: number): void {
+  const tokensElement = document.getElementById("tokens");
+  if (tokensElement) {
+    tokensElement.textContent = `徳: ${tokenCount}`;
+  }
+}
