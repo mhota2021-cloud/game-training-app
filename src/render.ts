@@ -45,3 +45,16 @@ export function renderTokens(tokenCount: number): void {
     tokensElement.textContent = `徳: ${tokenCount}`;
   }
 }
+
+export function renderUpgradeButton(cost: number, purchased: boolean): void {
+  const upgradeButton = document.getElementById(
+    "upgrade-button",
+  ) as HTMLButtonElement | null;
+
+  if (upgradeButton) {
+    upgradeButton.textContent = purchased
+      ? "購入済み"
+      : `必要クリック回数を2減らす(${cost} 徳)`;
+    upgradeButton.disabled = purchased;
+  }
+}

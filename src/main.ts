@@ -5,12 +5,24 @@
 
 import { resetOmikuji, drawOmikuji } from "./omikuji";
 import { handleClickForDraw } from "./clickcount";
-import { addTokensForResult } from "./tokens";
-import { renderClickProgress, renderResult, renderTokens } from "./render";
+import { addTokensForResult, getTokenCount } from "./tokens";
+import {
+  renderClickProgress,
+  renderResult,
+  renderTokens,
+  renderUpgradeButton,
+} from "./render";
+import {
+  buyClickUpgrade,
+  CLICK_UPGRADE_COST,
+  isClickUpgradePurchased,
+} from "./upgrades";
 
 function main(): void {
   // おみくじ箱を用意する（1回呼ぶと、くじが入った状態になる）。
   resetOmikuji();
+
+  renderUpgradeButton(CLICK_UPGRADE_COST, isClickUpgradePurchased());
 
   const drawButton = document.getElementById("draw-button");
   const resetButton = document.getElementById("reset-button");
@@ -34,6 +46,16 @@ function main(): void {
     resetOmikuji();
     // 表示を初期状態（結果なし）に戻す。
     renderResult(null);
+  });
+
+  const upgradeButton = document.getElementById("upgrade-button");
+  upgradeButton?.addEventListener("click", () => {
+    const success = buyClickUpgrade();
+
+    if (success) {
+      renderTokens(getTokenCount());
+      renderUpgradeButton(CLICK_UPGRADE_COST, isClickUpgradePurchased());
+    }
   });
 }
 

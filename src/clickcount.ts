@@ -15,3 +15,7 @@ export function handleClickForDraw(): {
 
   return { count: clickCount, requiredClicks, canDraw: false };
 }
+
+export function decreseRequiredClicks(amount: number): void {
+  requiredClicks = Math.max(1, requiredClicks - amount);
+}

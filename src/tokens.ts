@@ -15,3 +15,16 @@ export function addTokensForResult(result: OmikujiResult): number {
   tokenCount += tokenValues[result];
   return tokenCount;
 }
+
+export function getTokenCount(): number {
+  return tokenCount;
+}
+
+export function spendTokens(amount: number): boolean {
+  if (tokenCount < amount) {
+    return false;
+  }
+
+  tokenCount -= amount;
+  return true;
+}
